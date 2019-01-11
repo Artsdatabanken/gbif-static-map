@@ -67,7 +67,7 @@ window.gbifStaticMap = window.gbifStaticMap || (function(){
         settings.left = tl[0];
         settings.top = tl[1];
       } else if (key == "bottomRight") {
-        var br = (containerElement.dataset[key] + ',').split(',').map(function(n){return parseInt(n, 10)});
+        var br = (containerElement.dataset[key] + ',0').split(',').map(function(n){return parseInt(n, 10)});
         settings.right = br[0];
         settings.bottom = br[1];
       }
