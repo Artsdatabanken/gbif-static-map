@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GBIF Static map</title>
+    <script src="scripts/gbif-static-map.js" defer="defer"></script>
+    <style>
+        table {
+            border-spacing: 0;
+            border-collapse: collapse;
+        }
+        td {
+            border: thin solid black;
+        }
+        table tr td:first-child {
+            width: 300px;
+        }
+        code {
+            white-space: pre;
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>GBIF Static map</h1>
+<p>Displays static maps with occurence data for species using the GBIF apis.</p>
+<h2>Examples</h2>
+<table>
+    <tr>
+        <td>
+<figure class="gbif-static-map"
+        data-zoom-level="5"
+        data-top-left="9,20"
+        data-bottom-right="10,21"
+        data-taxon-key="2669001"
+        data-points-style="green2.poly"
+        data-tiles-style="gbif-middle"
+        aria-label="Map showing Magellans peat moss observations in Argentina and Chile.">
+    <figcaption class="caption auto-caption">This text will be overridden</figcaption>
+</figure>
+
+        </td>
+        <td>
+            <p>Example 1: With automatic caption text.</p>
+
+            Code:
+            <code>
+&lt;figure class="gbif-static-map"
+        data-zoom-level="5"
+        data-top-left="9,20"
+        data-bottom-right="10,21"
+        data-taxon-key="2669001"
+        data-points-style="green2.poly"
+        data-tiles-style="gbif-middle"
+        aria-label="Map showing Magellans peat moss observations in Argentina and Chile.">
+    &lt;figcaption class="caption auto-caption">This text will be overridden&lt;/figcaption>
+&lt;/figure>
+            </code>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <figure class="gbif-static-map"
+                    data-zoom-level="8"
+                    data-top-left="134,68"
+                    data-bottom-right="136,69"
+                    data-taxon-key="9805720"
+                    data-points-style="purpleHeat.point"
+                    data-tiles-style="osm-bright-en"
+                    aria-label="Map showing magpie observations in middle of Norway.">
+                <figcaption class="caption">This text will not be overridden</figcaption>
+            </figure>
+        </td>
+        <td>
+            <p>Example 2: With manual caption text.</p>
+
+            Code:
+            <code>
+&lt;figure class="gbif-static-map"
+        data-zoom-level="8"
+        data-top-left="134,68"
+        data-bottom-right="136,69"
+        data-taxon-key="9805720"
+        data-points-style="purpleHeat.point"
+        data-tiles-style="osm-bright-en"
+        aria-label="Map showing magpie observations in middle of Norway.">
+    &lt;figcaption class="caption">This text will not be overridden&lt;/figcaption>
+&lt;/figure>
+            </code>
+
+        </td>
+    </tr>
+</table>
+
+
+<h2>Parameters</h2>
+<p>Parameters are set as data- attributes on the <code>.gbif-static-map</code> element.</p>
+<table>
+    <thead>
+    <tr>
+        <th>Parameter</th>
+        <th>Values</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>data-zoom-level</td>
+        <td><p>Integer, 0-28.</p>
+            Level 0 equals the whole world in two tiles, level 5 means Iceland fit into one tile, level 11 one tile fits Manhattan, level 20 one tile roughly equals the foundation of one the the feet of the Eiffel Tower.</td>
+    </tr>
+    <tr>
+        <td>data-top</td>
+        <td><p>Top boundary of the map. Integer, a product of the zoom level.</p>
+            See <a href="https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/">https://www.maptiler.com/google-maps-coordinates-tile-bounds-projection/</a> for more info.</td>
+    </tr>
+    <tr>
+        <td>data-right</td>
+        <td><p>Right boundary. Integer, a product of the zoom level.</p>
+            </td>
+    </tr>
+    <tr>
+        <td>data-bottom</td>
+        <td><p>Bottom boundary. Integer, a product of the zoom level.</p>
+            </td>
+    </tr>
+    <tr>
+        <td>data-left</td>
+        <td><p>Left boundary. Integer, a product of the zoom level.</p>
+            </td>
+    </tr>
+    <tr>
+        <td>data-top-left</td>
+        <td><p>Short form of setting the top and left boundary values.</p></td>
+    </tr>
+    <tr>
+        <td>data-bottom-right</td>
+        <td><p>Short form of setting the bottom and right boundary values.</p></td>
+    </tr>
+    <tr>
+        <td>data-taxon-key</td>
+        <td><p>Integer, a valid GBIF taxon id.</p>
+            See <a href="https://www.gbif.org/species/search?q=">https://www.gbif.org/species/search</a> for more details.</td>
+    </tr>
+    <tr>
+        <td>data-points-style</td>
+        <td><p>String. Name of a valid colour style. Defaults to <code>classic.point</code>.</p>
+            See <a href="https://www.gbif.org/developer/maps#colors">https://www.gbif.org/developer/maps#colors</a> for a list of the colours.</td>
+    </tr>
+    <tr>
+        <td>data-tiles-style</td>
+        <td><p>String. A valid raster style for the background tiles.  Defaults to <code>gbif-classic</code>.</p> See <a href="https://tile.gbif.org/ui/">https://tile.gbif.org/ui/</a> for a examples of valid styles.</td>
+    </tr>
+    </tbody>
+</table>
+<h2>Auto-caption</h2>
+<p>Add an element with the classes <code>"caption auto-caption"</code> to the <code>.gbif-static-map</code> element.</p>
+<p>If you aren't using the auto-caption, it is strongly adviced to add an link to teh GBIF data in some other way.</p>
+
+<h2>TODO</h2>
+<p>Nice to have things we didn't have time to add.</p>
+<ul>
+    <li>Using lat, long coordinates directly instead of abstract z,x,y tiles.</li>
+    <li>Using a an arbitrary boundary box not matching absolute tile sizes.</li>
+    <li>Set a center point and just define visible radius instead of setting z.</li>
+</ul>
+<p>NOTE: we are not going to add any interaction w the map, if you need that, use the GBIF map widget.</p>
+</body>
+</html>
